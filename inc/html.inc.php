@@ -191,13 +191,13 @@ function host_summary($cat, $hosts) {
 	foreach($hosts as $host) {
 		$host_counter++;
 
-		$cores = count(group_plugindata(collectd_plugindata($host, 'cpu')));
-
 		printf('<tr class="%s">', $row_style[$host_counter % 2]);
 		printf('<th><a href="%shost.php?h=%s">%s</a></th>',
 			$CONFIG['weburl'],$host, $host);
 
 		if ($CONFIG['showload']) {
+			$cores = count(group_plugindata(collectd_plugindata($host, 'cpu')));
+
 			collectd_flush(sprintf('%s/load/load', $host));
 			$rrd_info = $rrd->rrd_info($CONFIG['datadir'].'/'.$host.'/load/load.rrd');
 
