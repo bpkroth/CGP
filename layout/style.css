@@ -44,7 +44,9 @@ a:hover {
 }
 
 table.summary th {
+	/*
 	width: 300px;
+	*/
 	font-weight: normal;
 	text-align: left;
 }
@@ -58,7 +60,9 @@ table.summary tr.odd {
 }
 
 table.summary td {
+	/*
 	width: 50px;
+	*/
 	text-align: right;
 }
 
