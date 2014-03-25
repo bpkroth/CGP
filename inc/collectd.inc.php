@@ -157,6 +157,7 @@ function graphs_from_plugin($host, $plugin, $overview=false) {
 	$plugindata = group_plugindata($plugindata);
 	$plugindata = plugin_sort($plugindata);
 
+	$last_desc = '';
 	foreach ($plugindata as $items) {
 
 		if (
@@ -180,6 +181,21 @@ function graphs_from_plugin($host, $plugin, $overview=false) {
 			isset($items['ti']) ? $_GET['ti'] = $items['ti'] : $_GET['ti'] = '';
 			include $CONFIG['webdir'].'/plugin/'.$plugin.'.php';
 		} else {
+			# Attempt to show a text searchable header.
+			$desc = '';
+			if (isset($items['p'])) {
+				if (isset($items['pi'])) {
+					$desc = $items['pi'];
+				}
+			}
+			# Only print when we're entered a new section.
+			if ($desc !== $last_desc) {
+				$last_desc = $desc;
+				# Also, make it linkable.
+				print "<br/><a name='$desc' href='#$desc'>$desc</a><br/>\n";
+			}
+			# Alternatively, set alt text below.  But that's not searchable, is it?
+
 			printf('<a href="%s%s"><img src="%s%s"></a>'."\n",
 				$CONFIG['weburl'],
 				build_url('detail.php', $items, $time),
