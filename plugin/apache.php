@@ -70,7 +70,7 @@ switch ($obj->args['type']) {
 		$obj = new Type_GenericStacked($CONFIG);
 		$obj->data_sources = array('value');
 		$obj->order = array(
-			'open',
+			#'open',
 			'idle_cleanup',
 			'finishing',
 			'logging',
@@ -95,7 +95,7 @@ switch ($obj->args['type']) {
 			'request_start',
 		);
 		$obj->ds_names = array(
-			'open'      => 'Open (empty)',
+			#'open'      => 'Open (empty)',	# Hide the open slots count since they're normally dominant and make reading the rest of the graph pretty hard.
 			'waiting'   => 'Waiting',
 			'starting'  => 'Starting up',
 			'reading'   => 'Reading request',
